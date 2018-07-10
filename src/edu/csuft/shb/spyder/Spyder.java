@@ -19,7 +19,7 @@ import org.jsoup.select.Elements;
  * @author dell
  *
  */
-public class Spyder  {
+public class Spyder implements Runnable  {
 	String url;
 	/**
 	 * 构造方法
@@ -34,6 +34,12 @@ public class Spyder  {
 		// TODO Auto-generated constructor stub
 		url=newurl;
 		filmList = new ArrayList<>();
+	}
+
+	public Spyder(String url, List<Film> filmList2) {
+		// TODO Auto-generated constructor stub
+		this.url = url;
+		this.filmList = filmList2;
 	}
 
 	public void run() {
@@ -58,6 +64,34 @@ public class Spyder  {
 				film.id = Integer.parseInt(id);
 				String star = item.select(".rating_num").get(0).text();
 				film.star = Double.parseDouble(star);
+				String info = item.select(".bd p").first().text(); // 取出电影信息具体项目
+				
+				String s0[] = info.split("\\/");
+				String str1[] = s0[0].split("\\: "); // 分出导演和主演
+				film.setDirector(str1[1].replaceAll("主演", "")); // 设置导演
+				if (str1.length < 3) // 设置演员
+				{
+					film.setActor(null);
+				} else {
+					film.setActor(str1[2].split("\\...")[0]);
+				}
+
+				String yearS[] = s0[s0.length - 3].split("\\ "); // 含年份的字符串
+				try {
+					film.setYear(Integer.parseInt(yearS[yearS.length - 1].trim())); // 设置年份
+				} catch (NumberFormatException e) {
+					String str[] = yearS[yearS.length - 1].split("\\("); // 对于某个特殊格式的年份处理
+					film.setYear(Integer.parseInt(str[0]));
+				}
+				film.setCountry(s0[s0.length - 2]); // 设置国家
+				
+
+				String ratingP = item.select(".star span").last().text(); // 评价人数
+				String s1[] = ratingP.split("\\人"); // 把评价只取出人数
+				film.setratingP(Integer.parseInt(s1[0]));
+			
+
+				film.setStar(Integer.parseInt(s1[0]));
 				
 				System.out.println(film);
 				filmList.add(film);

@@ -9,9 +9,9 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface FilmMapper {
 	//insert into film() values();
-	@Insert("insert into film(id,title,poster,satr,ratting,quote) values(#{id},#{title},#{poster},#{star},#{rating},#{quote})")
+	@Insert("insert into filmss(id,title,poster,star,rating,quote,director,actor,country,years) values(#{id},#{title},#{poster},#{star},#{rating},#{quote},#{director},#{actor},#{year},#{country})")
 	void insert(Film film);
-	@Select("select * from film")
+	@Select("select * from filmss")
 	List<Film> findAll();
 	
 }

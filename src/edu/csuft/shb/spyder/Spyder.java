@@ -3,6 +3,8 @@ package edu.csuft.shb.spyder;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,6 +13,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 
@@ -29,7 +35,7 @@ public class Spyder implements Runnable  {
 	/**
 	 * 电影类型对象
 	 */
-	List<Film> filmList;
+	public List<Film> filmList;
 	public Spyder(String newurl) {
 		// TODO Auto-generated constructor stub
 		url=newurl;
@@ -96,6 +102,9 @@ public class Spyder implements Runnable  {
 				System.out.println(film);
 				filmList.add(film);
 			}
+
+			
+		
 			//获得会话工厂
 			SqlSessionFactory factory=new SqlSessionFactoryBuilder()
 					.build(new FileReader("config.xml"));
@@ -107,8 +116,9 @@ public class Spyder implements Runnable  {
 			}
 			session.commit();
 			session.close();
-			System.out.println("存储成功");
-			
+			//System.out.println("存储成功");
+
+
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

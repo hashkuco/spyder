@@ -6,7 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.omg.CORBA.Request;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+
 
 
 
@@ -28,7 +36,7 @@ public class ImgDownload implements Runnable {
 		try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(path, name)));) {
 
 			byte[] data = new OkHttpClient.Builder()
-					.connectTimeout(60, TimeUnit.SECONDS)   //连接时间60ms
+					.connectTimeout(60,TimeUnit.SECONDS)   //连接时间60ms
 					.readTimeout(60, TimeUnit.SECONDS)
 					.writeTimeout(60, TimeUnit.SECONDS)
 					.build()
@@ -41,7 +49,5 @@ public class ImgDownload implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String args[]) {
-		new	ImgDownload(film).run();
-	}
+
 }

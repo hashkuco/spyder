@@ -6,17 +6,22 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/dell/Desktop/jsoup-1.11.3.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/dell/Desktop/mybatis-3.4.6/mybatis-3.4.6.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/dell/Desktop/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/dell/Desktop/okhttp-3.10.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/dell/Desktop/jsoup-1.11.3.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

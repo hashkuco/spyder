@@ -35,6 +35,32 @@ public class App {
 			pool.shutdown(); // 关闭线程池
 		}
 		
+		while (true) {
+
+			if (pool.isTerminated() == true) { // 当所有任务都关了就开始写数据
+				writeData(filmList);
+				break;
+			} else { // 否则睡一秒 
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		
+	}
+	private static void writeData(List<Film> films) { // 写入数据方法 存到数据库 下图片
+
+
+		ExecutorService pool = Executors.newFixedThreadPool(8); // 开启八个线程 下载图片
+		for (Film film : films) { // 遍历数组
+			pool.execute(new ImgDownload(film));
+		}
+		pool.shutdown();
+
 	}
 
 }
